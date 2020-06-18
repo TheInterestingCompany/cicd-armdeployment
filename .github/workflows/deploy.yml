@@ -1,16 +1,17 @@
-name: DeployJSON
+<!-- wp:syntaxhighlighter/code {"language":"powershell"} -->
+<pre class="wp-block-syntaxhighlighter-code">name: DeployJSON
 env:
   OUTPUT_PATH: ${{ github.workspace }}
 
 on:
-     # automate deploymend on push to master branch only
+     # automate deployment on push to master branch only
     push:
       branches:
         - master
 
 jobs:
   build:
-      # use ubuntu to execute build
+      # use ubuntu to execute the build
     runs-on: ubuntu-latest
  
     steps:
@@ -26,7 +27,7 @@ jobs:
 
       # deploy ARM template with inline AZ CLI command
       - name: Deploy ARM Template
-      # define required arguments for AZ CLI  
+      # define required arguments for AZ CLI command 
         env:
           RESOURCE_GROUP: rg-appservice-test-01
           TEMPLATEFILE: azuredeploy.json
@@ -35,4 +36,5 @@ jobs:
         with:
       # Execute AZ CLI command
           inlineScript: |
-            az deployment group create --resource-group $RESOURCE_GROUP --template-file $TEMPLATEFILE --parameters $PARAMETERSFILE
+            az deployment group create --resource-group $RESOURCE_GROUP --template-file $TEMPLATEFILE --parameters $PARAMETERSFILE</pre>
+<!-- /wp:syntaxhighlighter/code -->
