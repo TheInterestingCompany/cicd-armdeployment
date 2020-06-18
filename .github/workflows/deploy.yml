@@ -1,5 +1,4 @@
-<!-- wp:syntaxhighlighter/code {"language":"powershell"} -->
-<pre class="wp-block-syntaxhighlighter-code">name: DeployJSON
+name: DeployJSON
 env:
   OUTPUT_PATH: ${{ github.workspace }}
 
@@ -36,5 +35,4 @@ jobs:
         with:
       # Execute AZ CLI command
           inlineScript: |
-            az deployment group create --resource-group $RESOURCE_GROUP --template-file $TEMPLATEFILE --parameters $PARAMETERSFILE</pre>
-<!-- /wp:syntaxhighlighter/code -->
+            az deployment group create --resource-group $RESOURCE_GROUP --template-file $TEMPLATEFILE --parameters $PARAMETERSFILE
