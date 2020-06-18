@@ -30,4 +30,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az deployment group create "--resource-group $env:RESOURCE_GROUP --template-file $env:TEMPLATEFILE --parameters $env:PARAMETERSFILE"  
+            az deployment group create --resource-group $RESOURCE_GROUP --template-file $TEMPLATEFILE --parameters $PARAMETERSFILE
