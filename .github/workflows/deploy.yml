@@ -26,8 +26,8 @@ jobs:
           RESOURCE_GROUP: rg-appservice-test-01
           RESOURCE_GROUP_REGION: northeurope
           DEPLOYMENTNAME: appservicedeployment01
-          TEMPLATEFILE: azuredeploy.json
-          PARAMETERSFILE: azuredeploy.parameters.json      
+          TEMPLATEFILE: ./azuredeploy.json
+          PARAMETERSFILE: ./azuredeploy.parameters.json      
         uses: azure/CLI@v1
         with:
           inlineScript: |
