@@ -14,33 +14,21 @@ jobs:
     steps:
       # checkout code from repo
       - name: checkout code from repo
-        uses: actions/checkout@v1
+        uses: actions/checkout@master
         
-      - name: find powershell file
-        run: |
-          ls '${{ env.OUTPUT_PATH }}'
-               
-      - name: deploy json
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy ARM Template
         env:
-
-          RESOURCE_GROUP: rg-githubdeployment
-
+          RESOURCE_GROUP: rg-appservice-test-01
           RESOURCE_GROUP_REGION: northeurope
-          
-          DEPLOYMENTNAME: jsondeploy2
-          
+          DEPLOYMENTNAME: appservicedeployment01
           TEMPLATEFILE: azuredeploy.json
-          
-          PARAMETERSFILE: azuredeploy.parameters.json
-
-        run: >      
-          powershell -command "& '${{ env.OUTPUT_PATH }}\deploy.ps1'"
-          -servicePrincipal ${{ secrets.SERVICE_PRINCIPAL_APPID }}
-          -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
-          -servicePrincipalTenantId ${{ secrets.SERVICE_PRINCIPAL_TENANTID }}
-          -azureSubscriptionName ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          -resourceGroupName %RESOURCE_GROUP%
-          -resourceGroupNameRegion %RESOURCE_GROUP_REGION%         
-          -deploymentname %DEPLOYMENTNAME%
-          -templatefile %TEMPLATEFILE%
-          -parametersfile %PARAMETERSFILE%
+          PARAMETERSFILE: azuredeploy.parameters.json      
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az deployment group create --name %deploymentname% --resource-group %resourceGroupName% --template-file %templatefile% --parameters %parametersfile%  
