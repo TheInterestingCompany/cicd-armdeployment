@@ -29,7 +29,6 @@ jobs:
       # define required arguments for AZ CLI  
         env:
           RESOURCE_GROUP: rg-appservice-test-01
-          DEPLOYMENTNAME: appservicedeployment01
           TEMPLATEFILE: azuredeploy.json
           PARAMETERSFILE: azuredeploy.parameters.json      
         uses: azure/CLI@v1
