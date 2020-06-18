@@ -24,11 +24,10 @@ jobs:
       - name: Deploy ARM Template
         env:
           RESOURCE_GROUP: rg-appservice-test-01
-          RESOURCE_GROUP_REGION: northeurope
           DEPLOYMENTNAME: appservicedeployment01
           TEMPLATEFILE: ../../azuredeploy.json
           PARAMETERSFILE: ../../azuredeploy.parameters.json      
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az deployment group create --resource-group $env:RESOURCE_GROUP --template-file $env:TEMPLATEFILE --parameters $env:PARAMETERSFILE  
+            az deployment group create "--resource-group $env:RESOURCE_GROUP --template-file $env:TEMPLATEFILE --parameters $env:PARAMETERSFILE"  
