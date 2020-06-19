@@ -1,6 +1,6 @@
 name: DeployJSON
 on:
-     # automate deployment on push to master branch only and only when ARM template or yaml file is modified
+     # automate deployment on push to master branch only and only when ARM template or yaml file is modified1
     push:
       branches:
         - master
