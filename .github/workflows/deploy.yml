@@ -1,12 +1,12 @@
 name: DeployJSON
-env:
-  OUTPUT_PATH: ${{ github.workspace }}
-
 on:
-     # automate deployment on push to master branch only
+     # automate deployment on push to master branch only and only when ARM template or yaml file is modified
     push:
       branches:
         - master
+      paths:
+        - ".github/workflows/deploy.yml"
+        - "azuredeploy.json"
 
 jobs:
   build:
